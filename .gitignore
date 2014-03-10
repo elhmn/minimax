@@ -1,0 +1,12 @@
+#TMP
+.*.swp
+.*.swo
+
+#EXEC
+a.out
+
+#OBJECT
+*.o
+
+#LIB
+*.a
