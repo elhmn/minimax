@@ -21,7 +21,8 @@ int		**copy_tab(int **tab, int line, int col)
 	int		j;
 
 	i = 0;
-	if (!(new = malloc(sizeof(int*) * line)))
+	if (!(
+		new = malloc(sizeof(int*) * line)))
 		return (NULL);
 	while (i < line)
 		if (!(new[i++] = malloc(sizeof(int) * col)))
@@ -77,11 +78,11 @@ void	init_tab(int **tab, int line, int col)
 void	print_piece(int	piece)
 {
 	if (piece == 0)
-		printf(" . |");
+		printf(" \033\[0;1;37m.\033\[0m |");
 	else if (piece == 1)
-		printf(" X |");
+		printf(" \033\[0;1;31mX\033\[0m |");
 	else
-		printf(" O |");
+		printf(" \033\[0;1;33mO\033\[0m |");
 }
 
 void	print_tab(int **tab, int line, int col)
