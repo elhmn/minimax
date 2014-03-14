@@ -64,7 +64,7 @@ int		minimax(int **tab, t_game *game, int depht)
 
 	m = 0;
 	if (depht <= 0)
-		return (eval(tab, game->line, game->col));
+		return (eval(tab, *game));
 	if (game->player == MAX)
 	{
 		mark_max = -INF;
@@ -72,7 +72,12 @@ int		minimax(int **tab, t_game *game, int depht)
 		{
 			put_coin(tab, *game, m);
 			game->player = MIN;
+			//print_game(*game, m, mark);
+			//usleep(PAUSE);
 			mark = minimax(tab, game, --depht);
+			//printf("mark = %d\n", mark);
+			//print_game(*game, m, mark);
+			//usleep(PAUSE);
 			remove_coin(tab, *game, m);
 			if (mark > mark_max)
 			{
@@ -89,10 +94,13 @@ int		minimax(int **tab, t_game *game, int depht)
 		{
 			put_coin(tab, *game, m);
 			game->player = MAX;
-			//print_tab(tab, game->line, game->col);
+	//print_tab(tab, game->line, game->col);
 			//print_game(*game, m, mark);
 			//usleep(PAUSE);
 			mark = minimax(tab, game, --depht);
+			//printf("mark = %d", mark);
+			//print_game(*game, m, mark);
+			//usleep(PAUSE);
 			remove_coin(tab, *game, m);
 			if (mark < mark_max)
 			{

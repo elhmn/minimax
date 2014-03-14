@@ -38,9 +38,9 @@ int		main(void)
 	data.col = COL;
 	//print_tab(tab, LINE, COL);
 	//win_line(tab, data);
-//	init_tab(tab, LINE, COL);
-//	win_col(tab, data);
-//	init_tab(tab, LINE, COL);
+	//init_tab(tab, LINE, COL);
+	//win_col(tab, data);
+	//init_tab(tab, LINE, COL);
 	win_diag1(tab, data);
 	init_tab(tab, LINE, COL);
 	win_diag2(tab, data);

@@ -14,7 +14,7 @@
 # define TAB_TOOLS_H
 # define LINE	10
 # define COL	15
-# define DEPHT	10
+# define DEPHT	5
 
 int		**copy_tab(int **tab, int line, int col);
 void	print_tab(int **tab, int line, int col);

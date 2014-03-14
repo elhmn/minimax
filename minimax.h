@@ -17,7 +17,7 @@
 # define MIN 2
 # define PAUSE 50000
 
-typedef struct s_game
+typedef struct	s_game
 {
 	int		line;
 	int		col;
@@ -25,7 +25,7 @@ typedef struct s_game
 	int		player;
 }				t_game;
 
-int		minimax(int **tab,t_game *game, int depht);
+int		minimax(int **tab, t_game *game, int depht);
 void	remove_coin(int **tab, t_game game, int play);
 void	put_coin(int **tab, t_game game, int play);
 void	free_tab(int **tab, int size);
@@ -34,10 +34,16 @@ void	free_tab(int **tab, int size);
 ** Evaluation functions
 */
 
-int		check_diag(int **tab, int line, int col, int P1, int P2);
-int		check_col(int **tab, int line, int col, int P1, int P2);
-int		check_line(int **tab, int line, int col, int P1, int P2);
-int		check_marks(int **tab, int line, int col, int P1, int P2);
-int		eval(int **tab, int line, int col);
+int		win_diag(int **tab, t_game game, int P1, int P2);
+int		win_diag1(int **tab, t_game game, int P1, int P2);
+int		win_diag2(int **tab, t_game game, int P1, int P2);
+int		win_diag3(int **tab, t_game game, int P1, int P2);
+int		win_diag4(int **tab, t_game game, int P1, int P2);
+
+int		win(int **tab, t_game game, int P1, int P2);
+int		win_line(int **tab, t_game game, int P1, int P2);
+int		win_col(int **tab, t_game game, int P1, int P2);
+int		check_marks(int **tab, t_game game, int P1, int P2);
+int		eval(int **tab, t_game game);
 
 #endif /* !MINIMAX_H */

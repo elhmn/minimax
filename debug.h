@@ -11,8 +11,7 @@
 /* ************************************************************************** */
 
 #ifndef DEBUG_H
-#define DEBUG_H
-#include "minimax.h"
+# define DEBUG_H
 
 void	print_game(t_game game, int play,int mark);
 void	debug(int i);
