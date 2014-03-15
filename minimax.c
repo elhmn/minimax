@@ -6,7 +6,7 @@
 /*   By: elhmn <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/10 16:32:48 by elhmn             #+#    #+#             */
-/*   Updated: 2014/03/10 16:32:48 by elhmn            ###   ########.fr       */
+/*   Updated: 2014/03/15 14:12:17 by bmbarga          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,58 +56,58 @@ void	free_tab(int **tab, int size)
 	}
 }
 	
-int		minimax(int **tab, t_game *game, int depht)
+int		minimax(int **tab, t_game *game, int depht, int col)
 {
-	int		m;
 	int		mark_max;
 	int		mark;
 
-	m = 0;
 	if (depht <= 0)
-		return (eval(tab, *game));
+		return (eval(tab, *game, col));
 	if (game->player == MAX)
 	{
 		mark_max = -INF;
-		while (m < game->col)
+		col = 0;
+		while (col < game->col)
 		{
-			put_coin(tab, *game, m);
+			put_coin(tab, *game, col);
 			game->player = MIN;
-			//print_game(*game, m, mark);
+		//	print_game(*game, col, mark);
+		//	usleep(PAUSE);
+			mark = minimax(tab, game, --depht, col);
+		//	printf("mark = %d\n", mark);
+		//	print_game(*game, col, mark);
 			//usleep(PAUSE);
-			mark = minimax(tab, game, --depht);
-			//printf("mark = %d\n", mark);
-			//print_game(*game, m, mark);
-			//usleep(PAUSE);
-			remove_coin(tab, *game, m);
+			remove_coin(tab, *game, col);
 			if (mark > mark_max)
 			{
 				mark_max = mark;
-				game->coup = m;
+				game->coup = col;
 			}
-			m++;
+			col++;
 		}
 	}
 	else
 	{	
 		mark_max = INF;
-		while (m < game->col)
+		col = 0;
+		while (col < game->col)
 		{
-			put_coin(tab, *game, m);
+			put_coin(tab, *game, col);
 			game->player = MAX;
-	//print_tab(tab, game->line, game->col);
-			//print_game(*game, m, mark);
-			//usleep(PAUSE);
-			mark = minimax(tab, game, --depht);
-			//printf("mark = %d", mark);
-			//print_game(*game, m, mark);
-			//usleep(PAUSE);
-			remove_coin(tab, *game, m);
+		//	print_tab(tab, game->line, game->col);
+		//	print_game(*game, col, mark);
+		//	usleep(PAUSE);
+			mark = minimax(tab, game, --depht, col);
+		//	printf("mark = %d", mark);
+		//	print_game(*game, col, mark);
+		//	usleep(PAUSE);
+			remove_coin(tab, *game, col);
 			if (mark < mark_max)
 			{
 				mark_max = mark;
-				game->coup = m;
+				game->coup = col;
 			}
-			m++;
+			col++;
 		}
 	}
 	return (mark_max);

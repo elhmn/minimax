@@ -6,7 +6,7 @@
 /*   By: elhmn <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/10 17:26:21 by elhmn             #+#    #+#             */
-/*   Updated: 2014/03/10 17:26:21 by elhmn            ###   ########.fr       */
+/*   Updated: 2014/03/15 13:24:10 by bmbarga          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ typedef struct	s_game
 	int		player;
 }				t_game;
 
-int		minimax(int **tab, t_game *game, int depht);
+int		minimax(int **tab, t_game *game, int depht, int m);
 void	remove_coin(int **tab, t_game game, int play);
 void	put_coin(int **tab, t_game game, int play);
 void	free_tab(int **tab, int size);
@@ -43,7 +43,7 @@ int		win_diag4(int **tab, t_game game, int P1, int P2);
 int		win(int **tab, t_game game, int P1, int P2);
 int		win_line(int **tab, t_game game, int P1, int P2);
 int		win_col(int **tab, t_game game, int P1, int P2);
-int		check_marks(int **tab, t_game game, int P1, int P2);
-int		eval(int **tab, t_game game);
+int		check_marks(int **tab, t_game game, int P1, int P2, int col);
+int		eval(int **tab, t_game game, int col);
 
 #endif /* !MINIMAX_H */

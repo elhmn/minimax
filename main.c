@@ -6,7 +6,7 @@
 /*   By: elhmn <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/10 15:46:37 by elhmn             #+#    #+#             */
-/*   Updated: 2014/03/10 15:46:37 by elhmn            ###   ########.fr       */
+/*   Updated: 2014/03/15 13:23:08 by bmbarga          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int		main(void)
 		game.player = 1;
 		printf("********* before ***********\n");
 		//print_game(game, 0, 0);
-		gain = 	minimax(new = copy_tab(tab, LINE, COL), &game, DEPHT);
+		gain = 	minimax(new = copy_tab(tab, LINE, COL), &game, DEPHT, 0);
 		free(new);
 		if (!game.coup)
 		{
@@ -65,7 +65,7 @@ int		main(void)
 		game.player = 2;
 		printf("********* before ***********\n");
 		print_game(game, 0, 0);
-		gain = minimax(new = copy_tab(tab, LINE, COL), &game, DEPHT);
+		gain = minimax(new = copy_tab(tab, LINE, COL), &game, DEPHT, 0);
 		free(new);
 		if (!game.coup)
 		{
