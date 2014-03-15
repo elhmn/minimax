@@ -6,7 +6,7 @@
 /*   By: bmbarga <bmbarga@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/09 14:31:29 by bmbarga           #+#    #+#             */
-/*   Updated: 2014/03/15 14:18:27 by bmbarga          ###   ########.fr       */
+/*   Updated: 2014/03/15 16:22:55 by bmbarga          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,20 +21,24 @@ int		eval(int **tab, t_game game, int col)
 	
 	mark = 0;
 	if (check_marks(tab, game, 4, 0, col))
-		mark = 1000;
+		mark = 10000;
 	else if (check_marks(tab, game, 3, 1, col))
-		mark = 100;
+		mark = 1000;
 	else if (check_marks(tab, game, 2, 2, col))
-		mark = 10;
+		mark = 100;
 	else if (check_marks(tab, game, 1, 3, col))
+		mark = 10;
+	else if (check_marks(tab, game, 2, 1, col))
 		mark = 1;
 	else if (check_marks(tab, game, 0, 4, col))
-		mark = -1000;
+		mark = -10000;
 	else if (check_marks(tab, game, 1, 3, col))
-		mark = -100;
+		mark = -1000;
 	else if (check_marks(tab, game, 2, 2, col))
-		mark = -10;
+		mark = -100;
 	else if (check_marks(tab, game, 3, 1, col))
+		mark = -10;
+	else if (check_marks(tab, game, 1, 2, col))
 		mark = -1;
 	return (mark);
 }
@@ -64,8 +68,6 @@ int		check_marks(int **tab, t_game game, int P1, int P2, int col)
 			win1++;
 		if (tab[m][col] == 2)
 			win2++;
-		if (tab[m][col] == 0)
-			break;
 		if (win2 == P2 && win1 == P1)
 		{
 	//	printf("******DEBUG_LINE*************\n");
@@ -76,31 +78,30 @@ int		check_marks(int **tab, t_game game, int P1, int P2, int col)
 		m++;
 	}
 	e = col - 3;
-	while (e < col && e < game.col && e >= 0)
+	while (e <= col && e < game.col)
 	{
 		win1 = 0;
 		win2 = 0;
 		m = e;
-		while (m < e + 4 && m < game.col)
+		while (m < e + 4 && m < game.col && m >= 0)
 		{
 		//		printf("******DEBUG_COL************\n");
 			if (tab[i][m] == 1)
 				win1++;
 			if (tab[i][m] == 2)
 				win2++;
-			if (tab[i][m] == 0)
-				break;
 			if (win1 == P1 && win2 == P2)
 			{
-	//			printf("******DEBUG_COL************\n");
-	//			printf("P1 = %d && P2 = %d \n", P1, P2);
-	//			sleep(2);
+		//		printf("******DEBUG_COL************\n");
+		//		printf("P1 = %d && P2 = %d \n", P1, P2);
+		//		sleep(2);
 				return (1);
 			}
 			m++;	
 		}
 		e++;
 	}
+
 /*
 	
 	** check diag montante
