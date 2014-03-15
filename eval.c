@@ -6,7 +6,7 @@
 /*   By: bmbarga <bmbarga@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/09 14:31:29 by bmbarga           #+#    #+#             */
-/*   Updated: 2014/03/15 16:22:55 by bmbarga          ###   ########.fr       */
+/*   Updated: 2014/03/15 17:58:22 by bmbarga          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,26 +20,26 @@ int		eval(int **tab, t_game game, int col)
 	int		mark;
 	
 	mark = 0;
+	if (check_marks(tab, game, 1, 2, col))
+		mark = -1;
+	if (check_marks(tab, game, 2, 1, col))
+		mark = 1;
+	if (check_marks(tab, game, 3, 1, col))
+		mark = -10;
+	if (check_marks(tab, game, 1, 3, col))
+		mark = 10;
+	if (check_marks(tab, game, 2, 2, col))
+		mark = -100;
+	if (check_marks(tab, game, 2, 2, col))
+		mark = 100;
+	if (check_marks(tab, game, 1, 3, col))
+		mark = -1000;
+	if (check_marks(tab, game, 3, 1, col))
+		mark = 1000;
+	if (check_marks(tab, game, 0, 4, col))
+		mark = -10000;
 	if (check_marks(tab, game, 4, 0, col))
 		mark = 10000;
-	else if (check_marks(tab, game, 3, 1, col))
-		mark = 1000;
-	else if (check_marks(tab, game, 2, 2, col))
-		mark = 100;
-	else if (check_marks(tab, game, 1, 3, col))
-		mark = 10;
-	else if (check_marks(tab, game, 2, 1, col))
-		mark = 1;
-	else if (check_marks(tab, game, 0, 4, col))
-		mark = -10000;
-	else if (check_marks(tab, game, 1, 3, col))
-		mark = -1000;
-	else if (check_marks(tab, game, 2, 2, col))
-		mark = -100;
-	else if (check_marks(tab, game, 3, 1, col))
-		mark = -10;
-	else if (check_marks(tab, game, 1, 2, col))
-		mark = -1;
 	return (mark);
 }
 
@@ -97,7 +97,7 @@ int		check_marks(int **tab, t_game game, int P1, int P2, int col)
 		//		sleep(2);
 				return (1);
 			}
-			m++;	
+			m++;
 		}
 		e++;
 	}
