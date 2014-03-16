@@ -70,9 +70,13 @@ int		win_col(int **tab, t_game game, int P1, int P2)
 			}
 		//	init_tab(tab, LINE, COL);
 		//		usleep(PAUSE);
-				if (win2 == P2 && win1 == P1)
+		//	if (win2 == P2 && win1 == P1)
+		//	{
+				if (win1 == 4)
 					return (1);
-
+				if (win2 == 4)
+					return (2);
+		//	}
 			j++;
 	//		printf("********************* DEBUG *****************\n");
 	//		printf("i = [ %d ] \n j = [ %d ] \n who = [ %d ]\n win = [ %d ]\n", i, j, who, win);
@@ -114,8 +118,13 @@ int		win_line(int **tab, t_game game, int P1, int P2)
 			//usleep(PAUSE);
 //			printf("********************* DEBUG *****************\n");
 //			printf("i = [ %d ] \n k = [ %d ] \n win1 = [ %d ]\n win2 = [ %d ]\n", i, k, win1, win2);
-			if (win2 == P2 && win1 == P1)
-				return (1);
+//			if (win2 == P2 && win1 == P1)
+//			{
+				if (win1 == 4)
+					return (1);
+				if (win2 == 4)
+					return (2);
+//			}
 			j++;
 		}
 		i++;

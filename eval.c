@@ -20,28 +20,27 @@ int		eval(int **tab, t_game game, int col)
 	int		mark;
 	
 	mark = 0;
-	if (check_marks(tab, game, 1, 2, col))
-		mark = -1;
-	if (check_marks(tab, game, 2, 1, col))
-		mark = 1;
-	if (check_marks(tab, game, 3, 1, col))
-		mark = -10;
-	if (check_marks(tab, game, 1, 3, col))
-		mark = 10;
-	if (check_marks(tab, game, 2, 2, col))
-		mark = -100;
-	if (check_marks(tab, game, 2, 2, col))
-		mark = 100;
-	if (check_marks(tab, game, 1, 3, col))
-		mark = -1000;
-	if (check_marks(tab, game, 3, 1, col))
-		mark = 1000;
-	if (check_marks(tab, game, 0, 4, col))
-		mark = -10000;
 	if (check_marks(tab, game, 4, 0, col))
 		mark = 10000;
+	else if (check_marks(tab, game, 0, 4, col))
+		mark = -10000;
+	else if (check_marks(tab, game, 3, 1, col))
+		mark = 1000;
+	else if (check_marks(tab, game, 1, 3, col))
+		mark = -1000;
+	else if (check_marks(tab, game, 2, 2, col))
+		mark = 100;
+	else if (check_marks(tab, game, 1, 3, col))
+		mark = 10;
+	else if (check_marks(tab, game, 3, 1, col))
+		mark = -10;
+	else if (check_marks(tab, game, 2, 1, col))
+		mark = 1;
+	else if (check_marks(tab, game, 1, 2, col))
+		mark = -1;
 	return (mark);
 }
+
 
 int		check_marks(int **tab, t_game game, int P1, int P2, int col)
 {
@@ -50,8 +49,8 @@ int		check_marks(int **tab, t_game game, int P1, int P2, int col)
 	int		win1;
 	int		win2;
 	int		e;
-//	int		l;
-//	int		n;
+	int		l;
+	int		n;
 
 	e = 0;
 	m = 0;
@@ -102,14 +101,13 @@ int		check_marks(int **tab, t_game game, int P1, int P2, int col)
 		e++;
 	}
 
-/*
-	
+	/*
 	** check diag montante
-	
+	*/
 
 	m = i + 3;
 	e = col - 3;
-	while (e < game.col && m >= 0)
+	while (e <= col && m >= i)
 	{
 		l = m;
 		n = e;
@@ -124,8 +122,6 @@ int		check_marks(int **tab, t_game game, int P1, int P2, int col)
 				win1++;
 			if (tab[l][n] == 2)
 				win2++;
-			if (tab[l][n] == 0)
-				break;
 			if (win1 == P1 && win2 == P2)
 			{
 			//	printf("******DEBUG_DIAG_UP************\n");
@@ -139,13 +135,13 @@ int		check_marks(int **tab, t_game game, int P1, int P2, int col)
 		m--;
 	}
 	
-	
+	/*
 	** check diag descendante
-	
+	*/
 	
 	m = i - 3;
 	e = col - 3;
-	while (e < game.col && m < game.line)
+	while (e <= col && m <= i)
 	{
 		l = m;
 		n = e;
@@ -160,20 +156,17 @@ int		check_marks(int **tab, t_game game, int P1, int P2, int col)
 				win1++;
 			if (tab[l][n] == 2)
 				win2++;
-			if (tab[l][n] == 0)
-				break;
 			if (win1 == P1 && win2 == P2)
 			{
 			//	printf("******DEBUG_DIAG_DOWN************\n");
 			//	printf("P1 = %d && P2 = %d \n", P1, P2);
 				return (1);
 			}
-			n--;
-			l--;
+			n++;
+			l++;
 		}
-		e--;
-		m--;
+		e++;
+		m++;
 	}
-	*/
 	return (0);
 }
