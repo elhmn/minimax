@@ -27,14 +27,11 @@ int		win(int **tab, t_game game)
 {
 	int		who;
 
-	who = 0;
-	if ((who = win_col(tab, game)))
-		congrat(who);
-	else if ((who = win_line(tab, game)))
-		congrat(who);
-	else if ((who = win_diag(tab, game)))
-		congrat(who);
+	if ((who = win_col(tab, game))
+		|| (who = win_line(tab, game))
+		|| (who = win_diag(tab, game)))
 	return (who);
+	return (0);
 }
 
 int		win_col(int **tab, t_game game)

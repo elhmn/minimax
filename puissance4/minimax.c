@@ -60,13 +60,13 @@ void	free_tab(int **tab, int size)
 	}
 }
 	
-int		minimax(int **tab, t_game *game, int depht, int col)
+int		minimax(int **tab, t_game *game, int depht, int col, int who)
 {
 	int		mark_max;
 	int		mark;
 
-	if (depht <= 0)
-		return (eval(tab, *game, col));
+	if (depht <= 0 || win(tab, *game))
+		return (eval(tab, *game, col, who));
 	if (game->player == MIN)
 	{
 		mark_max = -INF;
@@ -77,7 +77,7 @@ int		minimax(int **tab, t_game *game, int depht, int col)
 			game->player = MAX;
 		//	print_game(*game, col, mark);
 		//	usleep(PAUSE);
-			mark = minimax(tab, game, --depht, col);
+			mark = minimax(tab, game, --depht, col, MIN);
 		//	printf("mark = %d\n", mark);
 		//	print_game(*game, col, mark);
 			//usleep(PAUSE);
@@ -101,7 +101,7 @@ int		minimax(int **tab, t_game *game, int depht, int col)
 		//	print_tab(tab, game->line, game->col);
 		//	print_game(*game, col, mark);
 		//	usleep(PAUSE);
-			mark = minimax(tab, game, --depht, col);
+			mark = minimax(tab, game, --depht, col, MAX);
 		//	printf("mark = %d", mark);
 		//	print_game(*game, col, mark);
 		//	usleep(PAUSE);

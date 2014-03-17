@@ -15,29 +15,41 @@
 #include <unistd.h>
 
 
-int		eval(int **tab, t_game game, int col)
+int		eval(int **tab, t_game game, int col, int who)
 {
 	int		mark;
 	
 	mark = 0;
-	if (check_marks(tab, game, 0, 4, col))
-		mark = 10000;
-	else if (check_marks(tab, game, 4, 0, col))
-		mark = -10000;
-	else if (check_marks(tab, game, 1, 3, col))
-		mark = 1000;
-	else if (check_marks(tab, game, 3, 1, col))
-		mark = -1000;
-	else if (check_marks(tab, game, 2, 2, col))
-		mark = 100;
-	else if (check_marks(tab, game, 1, 3, col))
-		mark = 10;
-	else if (check_marks(tab, game, 3, 1, col))
-		mark = -10;
-	else if (check_marks(tab, game, 1, 2, col))
-		mark = 1;
-	else if (check_marks(tab, game, 2, 1, col))
-		mark = -1;
+	if (who == MIN)
+	{
+		if (check_marks(tab, game, 0, 4, col))
+			mark = 10000;
+		else if (check_marks(tab, game, 3, 1, col))
+			mark = 1000;
+		else if (check_marks(tab, game, 2, 1, col))
+			mark = 100;
+		else if (check_marks(tab, game, 4, 0, col))
+			mark = -10000;
+		else if (check_marks(tab, game, 1, 3, col))
+			mark = -1000;
+		else if (check_marks(tab, game, 1, 2, col))
+			mark = -100;
+	}
+	else
+	{
+		if (check_marks(tab, game, 4, 0, col))
+			mark = -10000;
+		else if (check_marks(tab, game, 1, 3, col))
+			mark = -1000;
+		else if (check_marks(tab, game, 1, 2, col))
+			mark = -100;
+		else if (check_marks(tab, game, 0, 4, col))
+			mark = 10000;
+		else if (check_marks(tab, game, 3, 1, col))
+			mark = 1000;
+		else if (check_marks(tab, game, 2, 1, col))
+			mark = 100;
+	}
 	return (mark);
 }
 

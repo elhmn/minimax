@@ -13,6 +13,7 @@
 #include <time.h>
 #include <unistd.h>
 #include <stdlib.h>
+#include <stdio.h>
 #include "libft.h"
 #include "puissance4.h"
 #define P1 1
@@ -43,6 +44,7 @@ int				main(int ac, char **av)
 	int		who;
 	int		mode;
 	t_game	game;
+	int		gain;
 
 	srand(time(NULL));
 	who = convert(rand() % 2);
@@ -55,7 +57,7 @@ int				main(int ac, char **av)
 		mode = choose_mode();
 		if (mode == 2)
 		{
-			while (!win(game.tab, game)) //rajouter le cas d'egalite
+			while (!(who = win(game.tab, game))) //rajouter le cas d'egalite
 			{
 				play(&game);
 				if (game.player == P1)
@@ -63,11 +65,12 @@ int				main(int ac, char **av)
 				else
 					game.player = P1;
 			}
+			congrat(who);
 			ft_display_tab(game);
 		}
 		else
 		{
-			while (!win(game.tab, game))
+			while (!(who = win(game.tab, game)))
 			{
 				if (game.player == 1)
 				{
@@ -76,12 +79,14 @@ int				main(int ac, char **av)
 				}
 				else
 				{
-					minimax(copy_tab(game.tab, game.line, game.col), &game, DEPHT, 0);
+					gain = minimax(copy_tab(game.tab, game.line, game.col), &game, DEPHT, 0, 2);
+					printf("gain = [ %d ]\n", gain);
 					while (put_coin(game.tab, game, -1))
 						game.coup = rand() % game.col;
 					game.player = 1;
 				}
 			}
+			congrat(who);
 			ft_display_tab(game);
 		}
 	}

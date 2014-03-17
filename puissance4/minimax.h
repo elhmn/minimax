@@ -37,7 +37,7 @@ int		ft_get_data(char **av, t_game *game, int who);
 ** minimax.c
 */
 
-int		minimax(int **tab, t_game *game, int depht, int m);
+int		minimax(int **tab, t_game *game, int depht, int col, int who);
 void	remove_coin(int **tab, t_game game, int play);
 int		put_coin(int **tab, t_game game, int play);
 void	free_tab(int **tab, int size);
@@ -46,6 +46,7 @@ void	free_tab(int **tab, int size);
 ** win.c
 */
 
+void	congrat(int who);
 int		win(int **tab, t_game game);
 int		win_line(int **tab, t_game game);
 int		win_col(int **tab, t_game game);
@@ -65,6 +66,6 @@ int		win_diag4(int **tab, t_game game);
 */
 
 int		check_marks(int **tab, t_game game, int P1, int P2, int col);
-int		eval(int **tab, t_game game, int col);
+int		eval(int **tab, t_game game, int col, int who);
 
 #endif /* !MINIMAX_H */

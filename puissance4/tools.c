@@ -22,7 +22,7 @@ int		getnbr_fd(t_game *game)
 
 	play = 0;
 	if ((ret = get_next_line(0, &nbr)))
-		if (ft_check_data(nbr))
+		if (ft_check_data(nbr) || !*nbr)
 		{
 			ft_putendl_fd("U must only type digit", 2);
 			return (0);
@@ -33,7 +33,7 @@ int		getnbr_fd(t_game *game)
 		return (0);
 	}
 	play = ft_atoi(nbr);
-	if (play > game->col || play < 0)
+	if (play >= game->col || play < 0)
 	{
 		ft_putendl_fd("U cant play on this column", 2);
 		return (0);
