@@ -14,14 +14,49 @@
 #include "puissance4.h"
 #include "libft.h"
 #define MAL_ERROR {ft_putendl_fd("Puissance 4: not sufficient memory", 2);\
-			return (0);}
+return (0);}
 
-void	ft_display_nbr(int col)
+static void disp_endline(int col)
 {
 	int		i;
 
 	i = 0;
 	ft_putstr("\033[0;1;32m");
+	ft_putstr(" -");
+	while (i < col)
+	{
+		ft_putstr("----");
+		i++;
+	}
+	ft_putchar('\n');
+	ft_putstr("\033[0m");
+}
+
+
+
+static void disp_interline(int col)
+{
+	int		i;
+
+	i = 0;
+	ft_putstr("\033[0;1;32m");
+	ft_putchar(' ');
+	while (i < col)
+	{
+		ft_putstr("+---");
+		i++;
+	}
+	ft_putstr("+");
+	ft_putchar('\n');
+	ft_putstr("\033[0m");
+}
+
+static void	ft_display_nbr(int col)
+{
+	int		i;
+
+	i = 0;
+	ft_putstr("\033[0;1;33m");
 	while (i < col)
 	{
 		if (i > 9)
@@ -38,11 +73,11 @@ void	ft_display_nbr(int col)
 static void		ft_disp_token(int nbr)
 {
 	if (nbr == 0)
-		ft_putstr("\033[0;1;35m.\033[0m");
+		ft_putstr("\033[0;2;33m.\033[0m");
 	else if (nbr == 1)
 		ft_putstr("\033[0;1;31mX\033[0m");
 	else
-		ft_putstr("\033[0;1;33mO\033[0m");
+		ft_putstr("\033[0;1;37mO\033[0m");
 }
 
 /*
@@ -60,19 +95,27 @@ void	ft_display_tab(t_game game)
 	col = game.col;
 	i = 0;
 	j = 0;
+	disp_endline(col);
 	while (i < line)
 	{
 		while (j < col)
 		{
+			ft_putstr("\033[0;1;32m");
 			ft_putstr(" | ");
+			ft_putstr("\033[0m");
 			ft_disp_token(game.tab[i][j]);
 			j++;
 		}
+		ft_putstr("\033[0;1;32m");
 		ft_putstr(" | ");
+		ft_putstr("\033[0m");
 		ft_putchar('\n');
+		if (i != line - 1)
+			disp_interline(col);
 		i++;
 		j = 0;
 	}
+	disp_endline(col);
 	ft_display_nbr(col);
 	ft_putstr("Token per player : ");
 	ft_putnbr((line * col) / 2);
