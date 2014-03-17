@@ -57,7 +57,7 @@ int				main(int ac, char **av)
 		{
 			while (!win(game.tab, game)) //rajouter le cas d'egalite
 			{
-				play(&game, who);
+				play(&game);
 				if (game.player == P1)
 					game.player = P2;
 				else
@@ -67,12 +67,22 @@ int				main(int ac, char **av)
 		}
 		else
 		{
-		//	while (!win(game.tab, game))
-		//	{
-		//		if ()
-		//			return (0);
-		//	}
-			ft_putendl("The IA versus mode is unavialable");
+			while (!win(game.tab, game))
+			{
+				if (game.player == 1)
+				{
+					play(&game);
+					game.player = 2;
+				}
+				else
+				{
+					minimax(copy_tab(game.tab, game.line, game.col), &game, DEPHT, 0);
+					while (put_coin(game.tab, game, -1))
+						game.coup = rand() % game.col;
+					game.player = 1;
+				}
+			}
+			ft_display_tab(game);
 		}
 	}
 	free_tab(game.tab, game.line);

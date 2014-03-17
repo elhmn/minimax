@@ -15,6 +15,7 @@
 # define INF 20000
 # define MAX 1
 # define MIN 2
+# define DEPHT 10
 # define PAUSE 50000
 
 typedef struct	s_game

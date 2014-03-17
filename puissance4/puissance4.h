@@ -22,6 +22,12 @@ void	ft_display_tab(t_game game);
 int		ft_init_tab(t_game *game);
 
 /*
+** tab_tools.c
+*/
+
+int		**copy_tab(int **tab, int line, int col);
+
+/*
 ** tools.c
 */
 
@@ -50,6 +56,6 @@ int		ft_check_data(char *str);
 ** gametools.c 
 */
 
-void	play(t_game *game, int who);
+void	play(t_game *game);
 
 #endif /* !PUISSANCE4_H */

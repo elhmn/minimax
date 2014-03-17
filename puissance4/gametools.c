@@ -70,16 +70,16 @@ void	play_cpu(t_game *game, int who)
 }
 */
 
-void	play(t_game *game, int who)
+void	play(t_game *game)
 {
 	ft_display_tab(*game);
 	ft_putstr("Player ");
-	ft_putnbr(who);
+	ft_putnbr(game->player);
 	ft_putendl(" : play ?");
 	while (!getnbr_fd(game))
 	{
 		ft_putstr("Player ");
-		ft_putnbr(who);
+		ft_putnbr(game->player);
 		ft_putendl(" : play ?");
 	}
 }

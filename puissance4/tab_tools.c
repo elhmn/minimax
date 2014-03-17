@@ -44,6 +44,7 @@ int		**copy_tab(int **tab, int line, int col)
 	return (new);
 }
 
+/*
 int		**create_tab(int **tab, int line, int col)
 {
 	int		i;
@@ -106,3 +107,4 @@ void	print_tab(int **tab, int line, int col)
 	}
 	printf("\n****************************\n\n");
 }
+*/

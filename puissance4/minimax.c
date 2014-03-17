@@ -40,10 +40,7 @@ int		put_coin(int **tab, t_game game, int play)
 	if (play == -1) //if IA is playing
 		play = game.coup;
 	if (tab[0][play] != 0)
-	{
-		ft_putendl_fd("This column is already full", 2);
 		return (1);
-	}
 	while (i >= 0 && tab[i][play] != 0)
 		i--;
 	if (i >= 0 && tab[i][play] == 0)
@@ -70,14 +67,14 @@ int		minimax(int **tab, t_game *game, int depht, int col)
 
 	if (depht <= 0)
 		return (eval(tab, *game, col));
-	if (game->player == MAX)
+	if (game->player == MIN)
 	{
 		mark_max = -INF;
 		col = 0;
 		while (col < game->col)
 		{
 			put_coin(tab, *game, col);
-			game->player = MIN;
+			game->player = MAX;
 		//	print_game(*game, col, mark);
 		//	usleep(PAUSE);
 			mark = minimax(tab, game, --depht, col);
@@ -100,7 +97,7 @@ int		minimax(int **tab, t_game *game, int depht, int col)
 		while (col < game->col)
 		{
 			put_coin(tab, *game, col);
-			game->player = MAX;
+			game->player = MIN;
 		//	print_tab(tab, game->line, game->col);
 		//	print_game(*game, col, mark);
 		//	usleep(PAUSE);

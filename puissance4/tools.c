@@ -39,6 +39,9 @@ int		getnbr_fd(t_game *game)
 		return (0);
 	}
 	if (put_coin(game->tab, *game, play))//si je peu plus deposer le pion
+	{
+			ft_putendl_fd("This column is already full", 2);
 		return (0);
+	}
 	return (1);
 }
