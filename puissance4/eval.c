@@ -22,32 +22,40 @@ int		eval(int **tab, t_game game, int col, int who)
 	mark = 0;
 	if (who == MIN)
 	{
-		if (check_marks(tab, game, 0, 4, col))
-			mark = 10000;
-		else if (check_marks(tab, game, 3, 1, col))
-			mark = 1000;
-		else if (check_marks(tab, game, 2, 1, col))
-			mark = 100;
-		else if (check_marks(tab, game, 4, 0, col))
-			mark = -10000;
-		else if (check_marks(tab, game, 1, 3, col))
-			mark = -1000;
-		else if (check_marks(tab, game, 1, 2, col))
-			mark = -100;
-	}
-	else
-	{
-		if (check_marks(tab, game, 4, 0, col))
-			mark = -10000;
-		else if (check_marks(tab, game, 1, 3, col))
-			mark = -1000;
-		else if (check_marks(tab, game, 1, 2, col))
-			mark = -100;
+		if (check_marks(tab, game, 3, 1, col))
+			mark = 100000;
 		else if (check_marks(tab, game, 0, 4, col))
 			mark = 10000;
-		else if (check_marks(tab, game, 3, 1, col))
+		else if (check_marks(tab, game, 0, 3, col))
 			mark = 1000;
-		else if (check_marks(tab, game, 2, 1, col))
+		else if (check_marks(tab, game, 0, 2, col))
+			mark = 100;
+		else if (check_marks(tab, game, 1, 3, col))
+			mark = -100000;
+		else if (check_marks(tab, game, 4, 0, col))
+			mark = -10000;
+		else if (check_marks(tab, game, 3, 0, col))
+			mark = -1000;
+		else if (check_marks(tab, game, 2, 0, col))
+			mark = -100;
+	}
+	else if (who == MAX)
+	{
+		if (check_marks(tab, game, 1, 3, col))
+			mark = -100000;
+		else if (check_marks(tab, game, 4, 0, col))
+			mark = -10000;
+		else if (check_marks(tab, game, 3, 0, col))
+			mark = -1000;
+		else if (check_marks(tab, game, 2, 0, col))
+			mark = -100;
+		else if (check_marks(tab, game, 3, 1, col))
+			mark = 100000;
+		else if (check_marks(tab, game, 0, 4, col))
+			mark = 10000;
+		else if (check_marks(tab, game, 0, 3, col))
+			mark = 1000;
+		else if (check_marks(tab, game, 0, 2, col))
 			mark = 100;
 	}
 	return (mark);
@@ -79,14 +87,14 @@ int		check_marks(int **tab, t_game game, int P1, int P2, int col)
 			win1++;
 		if (tab[m][col] == 2)
 			win2++;
-		if (win2 == P2 && win1 == P1)
-		{
-		//	printf("******DEBUG_LINE*************\n");
-		//	printf("P1 = %d && P2 = %d \n", P1, P2);
-		//	sleep(2);
-			return (1);
-		}
 		m++;
+	}
+	if (win2 == P2 && win1 == P1)
+	{
+	//	printf("******DEBUG_LINE*************\n");
+	//	printf("P1 = %d && P2 = %d \n", P1, P2);
+	//	sleep(2);
+		return (1);
 	}
 	e = col - 3;
 	while (e <= col && e < game.col)
@@ -101,14 +109,14 @@ int		check_marks(int **tab, t_game game, int P1, int P2, int col)
 				win1++;
 			if (tab[i][m] == 2)
 				win2++;
-			if (win1 == P1 && win2 == P2)
-			{
+			m++;
+		}
+		if (win1 == P1 && win2 == P2)
+		{
 		//		printf("******DEBUG_COL************\n");
 		//		printf("P1 = %d && P2 = %d \n", P1, P2);
 		//		sleep(2);
-				return (1);
-			}
-			m++;
+			return (1);
 		}
 		e++;
 	}
@@ -134,14 +142,14 @@ int		check_marks(int **tab, t_game game, int P1, int P2, int col)
 				win1++;
 			if (tab[l][n] == 2)
 				win2++;
-			if (win1 == P1 && win2 == P2)
-			{
-			//	printf("******DEBUG_DIAG_UP************\n");
-			//	printf("P1 = %d && P2 = %d \n", P1, P2);
-				return (1);
-			}
 			n++;
 			l--;
+		}
+		if (win1 == P1 && win2 == P2)
+		{
+		//	printf("******DEBUG_DIAG_UP************\n");
+		//	printf("P1 = %d && P2 = %d \n", P1, P2);
+			return (1);
 		}
 		e++;
 		m--;
@@ -168,14 +176,14 @@ int		check_marks(int **tab, t_game game, int P1, int P2, int col)
 				win1++;
 			if (tab[l][n] == 2)
 				win2++;
-			if (win1 == P1 && win2 == P2)
-			{
-			//	printf("******DEBUG_DIAG_DOWN************\n");
-			//	printf("P1 = %d && P2 = %d \n", P1, P2);
-				return (1);
-			}
 			n++;
 			l++;
+		}
+		if (win1 == P1 && win2 == P2)
+		{
+		//	printf("******DEBUG_DIAG_DOWN************\n");
+		//	printf("P1 = %d && P2 = %d \n", P1, P2);
+			return (1);
 		}
 		e++;
 		m++;

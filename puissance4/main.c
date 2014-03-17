@@ -45,6 +45,7 @@ int				main(int ac, char **av)
 	int		mode;
 	t_game	game;
 	int		gain;
+	int		**tab;
 
 	srand(time(NULL));
 	who = convert(rand() % 2);
@@ -79,11 +80,15 @@ int				main(int ac, char **av)
 				}
 				else
 				{
-					gain = minimax(copy_tab(game.tab, game.line, game.col), &game, DEPHT, 0, 2);
+					gain = minimax(tab = copy_tab(game.tab, game.line, game.col), &game, DEPHT, 0, 2);
 					printf("gain = [ %d ]\n", gain);
+					game.player = 2;
+					if (gain == 0)
+						game.coup = game.col / 2 + 1;
 					while (put_coin(game.tab, game, -1))
 						game.coup = rand() % game.col;
 					game.player = 1;
+					free_tab(tab, game.line);
 				}
 			}
 			congrat(who);

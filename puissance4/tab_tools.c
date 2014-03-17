@@ -12,7 +12,6 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include "tab_tools.h"
 
 int		**copy_tab(int **tab, int line, int col)
 {
