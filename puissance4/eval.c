@@ -39,7 +39,7 @@ int		eval(int **tab, t_game game, int col, int who)
 		else if (check_marks(tab, game, 2, 0, col))
 			mark = -100;
 	}
-	else if (who == MAX)
+	else
 	{
 		if (check_marks(tab, game, 1, 3, col))
 			mark = -100000;
