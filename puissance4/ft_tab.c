@@ -21,7 +21,7 @@ void	ft_display_nbr(int col)
 	int		i;
 
 	i = 0;
-	ft_putstr("\033[0;1;35m");
+	ft_putstr("\033[0;1;32m");
 	while (i < col)
 	{
 		if (i > 9)
