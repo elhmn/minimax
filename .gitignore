@@ -1,5 +1,6 @@
 #TMP
 .*.swp
+.*.swn
 .*.swo
 
 #EXEC
@@ -10,3 +11,6 @@ a.out
 
 #LIB
 *.a
+
+#executable
+puissance4
